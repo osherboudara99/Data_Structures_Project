@@ -20,6 +20,17 @@ class LinkedList:
             tmp = tmp.next 
         print(tmp.value)
 
+    def return_LL(self):
+
+        tmp = self.head 
+        returned = ""
+        while tmp.next is not None:
+            returned += str(tmp.value) + ' -> '
+            tmp = tmp.next 
+        returned += str(tmp.value) 
+        return returned 
+
+
     def append(self, value):
         new_node = Node(value)
 
@@ -88,7 +99,7 @@ class LinkedList:
 
         for _ in range(index):
             tmp = tmp.next
-        return tmp.value
+        return tmp
     
     def set_value(self, index, value):
 
@@ -103,19 +114,82 @@ class LinkedList:
         tmp.value = value
         return True
     
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            print("Index is out of bounds!")
+            return False 
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
 
-ll = LinkedList(3)
 
-ll.append(2)
-ll.append(5) 
+        new_node = Node(value)
+        
+        tmp = self.get_value(index - 1)
+        
+        new_node.next = tmp.next 
+        tmp.next = new_node 
+        self.length += 1
+        return True 
+    
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            print("Index is out of bounds!")
+            return None 
+        if index == 0:
+            return self.pop_first() 
+        if index == self.length - 1:
+            return self.pop() 
+        
+        prev = self.get_value(index - 1)
+        tmp = prev.next 
 
-ll.prepend(4)
-ll.prepend(14)
+        prev.next = tmp.next 
+        tmp.next = None 
 
-ll.pop()
+        self.length -= 1
+        return tmp 
+    
+    def reverse(self):
 
-ll.pop_first()
+        tmp = self.head 
+        self.head = self.tail 
+        self.tail = tmp 
 
-ll.print_LL()
+        before = None 
 
-print(ll.get_value(2))
+        for _ in range(self.length):
+            after = tmp.next 
+            tmp.next = before 
+            before = tmp 
+            tmp = after 
+
+
+        
+
+     
+
+
+               
+
+
+class LLValue(BaseModel):
+    value: int
+
+
+
+# ll = LinkedList(2)
+
+# ll.append(35)
+# ll.append(3)
+
+# ll.insert(1, 6)
+
+# ll.print_LL()
+
+# print(ll.get_value(1).value)
+
+# ll.remove(1)
+
+# ll.print_LL()

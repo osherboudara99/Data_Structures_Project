@@ -1,4 +1,5 @@
 from pydantic import BaseModel 
+from typing import Union
 
 class Node:
     def __init__(self, value):
@@ -175,7 +176,7 @@ class LinkedList:
 
 
 class LLValue(BaseModel):
-    value: int
+    value: Union[str, int, float]
 
 
 

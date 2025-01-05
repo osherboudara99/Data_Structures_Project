@@ -180,6 +180,8 @@ class LLValue(BaseModel):
 
 
 
+
+
 # ll = LinkedList(2)
 
 # ll.append(35)

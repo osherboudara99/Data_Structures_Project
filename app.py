@@ -5,7 +5,7 @@ app = FastAPI()
 
 linked_lists = {}
 
-@app.get("/")
+@app.get("/")  
 async def root():
     return {"Create Data Structures with this tool!":"Hello"}
 
@@ -34,7 +34,26 @@ async def append_LL(list_id: int, value: LinkedList.LLValue):
     output = ll.append(value)
     if output:
         return {"list_id":list_id, "operation":'append', "value": {value}}
-    raise HTTPException(status_code=404, detail=f"Append operation failed! Cannot concatenate {value} to Linked List at ID {list_id}")
+    raise HTTPException(status_code=404, detail=f"Append operation failed! Cannot attach {value} to Linked List at ID {list_id}")
+ 
+
+@app.post("/LinkedList/{list_id}/prepend")
+async def prepend_LL(list_id: int, value: LinkedList.LLValue):
+    ll = linked_lists.get(list_id)
+
+    output = ll.prepend(value)
+    if output:
+        return {"list_id":list_id, "operation":'prepend', "value": {value}}
+    raise HTTPException(status_code=404, detail=f"Prepend operation failed! Cannot attach {value} to Linked List at ID {list_id}")
+
+@app.post("/LinkedList/{list_id}/insert")
+async def insert_LL(list_id: int, value: LinkedList.LLValue, index: int):
+    ll = linked_lists.get(list_id)
+
+    output = ll.insert(index, value)
+    if output:
+        return {"list_id":list_id, "operation":"insert", "index": index, "value": value}
+    raise HTTPException(status_code=404, detail=f"Insert operation failed! Cannot insert {value} at index {index} to Linked List at ID {list_id}")
     
 
 @app.get("/LinkedList/{list_id}")
@@ -52,7 +71,8 @@ async def print_LL(list_id: int):  # Add type hint for list_id
 async def print_all_LL():
     return {"linked_lists_ids": list(linked_lists.keys())}
 
+ 
 
 
 
-
+       

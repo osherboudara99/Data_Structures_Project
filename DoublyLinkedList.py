@@ -149,17 +149,17 @@ class DoublyLinkedList:
         return tmp
                   
     
-dll = DoublyLinkedList(2)
+# dll = DoublyLinkedList(2)
 
-dll.append(3)
+# dll.append(3)
 
-dll.append(4)
+# dll.append(4)
 
-print(dll.pop().value)
+# print(dll.pop().value)
 
-dll.prepend(1)
+# dll.prepend(1)
 
 
-dll.insert(1, 15)
+# dll.insert(1, 15)
 
-dll.print_DLL()
+# dll.print_DLL()

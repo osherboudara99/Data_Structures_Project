@@ -196,3 +196,6 @@ class LLValue(BaseModel):
 # ll.remove(1)
 
 # ll.print_LL()
+
+# print(ll.length)
+
